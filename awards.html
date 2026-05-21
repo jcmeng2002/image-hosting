@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腾讯奖项荣誉体系</title>
+<style>
+  @font-face {
+    font-family: 'TencentSans';
+    src: url('./fonts/TencentSans-W7.otf') format('opentype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: '腾讯体';
+    src: url('./fonts/腾讯体-W3.otf') format('opentype');
+    font-weight: 300;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1600px;
+    height: 1060px;
+    background: #F5F7FA;
+    font-family: '腾讯体', 'TencentSans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: #1D2129;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .page {
+    width: 1480px;
+    margin-top: 28px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    padding: 36px 44px 28px;
+  }
+
+  /* 标题区 */
+  .header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 24px;
+    gap: 14px;
+  }
+  .header h1 {
+    font-family: 'TencentSans', '腾讯体', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0052D9;
+    letter-spacing: 4px;
+  }
+  .header .badge {
+    background: #0052D9;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  /* 层级行 */
+  .tier {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .tier:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* 左侧层级标签 */
+  .tier-label {
+    width: 110px;
+    min-width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 8px;
+  }
+  .tier-label .tier-name {
+    font-family: 'TencentSans', '腾讯体', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #fff;
+  }
+  .tier-label .tier-count {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+  }
+
+  /* 右侧内容 */
+  .tier-content {
+    flex: 1;
+    padding: 12px 16px 12px 18px;
+  }
+
+  /* 子分类行 */
+  .sub-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .sub-row:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 子分类标签 */
+  .sub-tag {
+    width: 76px;
+    min-width: 76px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 4px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  /* 奖项便签容器 */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-left: 4px;
+  }
+
+  /* 奖项便签 */
+  .tag {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    background: #E8F0FF;
+    color: #0052D9;
+    border: 1px solid #B8D4FF;
+  }
+
+  /* ============================================ */
+  /* 公司级 - #0052D9                              */
+  /* ============================================ */
+  .tier.company .tier-label {
+    background: #0052D9;
+  }
+  .tier.company .tier-content {
+    background: #F5F8FF;
+  }
+
+  /* 最高荣誉 */
+  .sub-row.top-row .sub-tag {
+    background: #C8960C;
+    color: #fff;
+  }
+  .sub-row.top-row .tag {
+    background: #E8F0FF;
+    color: #8B6914;
+    border: 1px solid #B8D4FF;
+  }
+
+  /* 特别荣誉 */
+  .sub-row.special-row .sub-tag {
+    background: #003DA5;
+    color: #fff;
+  }
+  .sub-row.special-row .tag {
+    background: #E8F0FF;
+    color: #003DA5;
+    border: 1px solid #B8D4FF;
+  }
+
+  /* 公司奖项 */
+  .sub-row.corp-row .sub-tag {
+    background: #0052D9;
+    color: #fff;
+  }
+  .sub-row.corp-row .tag {
+    background: #E8F0FF;
+    color: #0052D9;
+    border: 1px solid #B8D4FF;
+  }
+
+  /* 专业奖项 */
+  .sub-row.prof-row .sub-tag {
+    background: #2979FF;
+    color: #fff;
+  }
+  .sub-row.prof-row .tag {
+    background: #EDF3FF;
+    color: #2979FF;
+    border: 1px solid #C4D8FF;
+  }
+
+  /* ============================================ */
+  /* 下方三组并排                                  */
+  /* ============================================ */
+  .bottom-row {
+    display: flex;
+    gap: 14px;
+  }
+  .bottom-row .tier {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  /* BG级 */
+  .tier.bg-tier .tier-label {
+    background: #1A5FE0;
+  }
+  .tier.bg-tier .tier-content {
+    background: #F0F4FD;
+  }
+  .tier.bg-tier .tag {
+    background: #E8EEFB;
+    color: #1A5FE0;
+    border: 1px solid #A8BFE8;
+  }
+
+  /* 线级 */
+  .tier.line-tier .tier-label {
+    background: #3574E8;
+  }
+  .tier.line-tier .tier-content {
+    background: #F2F5FD;
+  }
+  .tier.line-tier .tag {
+    background: #EAF0FD;
+    color: #3574E8;
+    border: 1px solid #B0C6EC;
+  }
+
+  /* 侧/部门级 */
+  .tier.dept-tier .tier-label {
+    background: #4D89F0;
+  }
+  .tier.dept-tier .tier-content {
+    background: #F4F7FE;
+  }
+  .tier.dept-tier .tag {
+    background: #EDF2FD;
+    color: #4D89F0;
+    border: 1px solid #BDD2F0;
+  }
+
+  /* 底部 */
+  .footer {
+    text-align: right;
+    font-size: 10px;
+    color: #C9CDD4;
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid #F2F3F5;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <h1>腾讯奖项荣誉体系</h1>
+    <span class="badge">22项</span>
+  </div>
+
+  <!-- 公司级 -->
+  <div class="tier company">
+    <div class="tier-label">
+      <span class="tier-name">公司级</span>
+      <span class="tier-count">18项</span>
+    </div>
+    <div class="tier-content">
+
+      <div class="sub-row top-row">
+        <div class="sub-tag">最高荣誉</div>
+        <div class="tags">
+          <div class="tag">创始人奖</div>
+        </div>
+      </div>
+
+      <div class="sub-row special-row">
+        <div class="sub-tag">特别荣誉</div>
+        <div class="tags">
+          <div class="tag">名品堂</div>
+        </div>
+      </div>
+
+      <div class="sub-row corp-row">
+        <div class="sub-tag">公司奖项</div>
+        <div class="tags">
+          <div class="tag">腾讯业务突破奖</div>
+          <div class="tag">腾讯管理突破奖</div>
+          <div class="tag">腾讯技术突破奖</div>
+          <div class="tag">腾讯可持续社会价值奖</div>
+          <div class="tag">腾讯开源协同奖</div>
+          <div class="tag">腾讯成本优化突破奖</div>
+          <div class="tag">腾讯营销突破奖</div>
+        </div>
+      </div>
+
+      <div class="sub-row prof-row">
+        <div class="sub-tag">专业奖项</div>
+        <div class="tags">
+          <div class="tag">腾讯卓越运营奖</div>
+          <div class="tag">腾讯卓越研发奖</div>
+          <div class="tag">专利奖·年度专利奖</div>
+          <div class="tag">专利奖·专利授权奖</div>
+          <div class="tag">专利奖·季度专利奖</div>
+          <div class="tag">专利奖·突出贡献奖</div>
+          <div class="tag">腾讯微创新奖</div>
+          <div class="tag">腾讯知识奖</div>
+          <div class="tag">腾讯自研上云云原生奖</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BG级 / 线级 / 侧部门级 并排 -->
+  <div class="bottom-row">
+
+    <div class="tier bg-tier">
+      <div class="tier-label">
+        <span class="tier-name">BG级</span>
+        <span class="tier-count">2项</span>
+      </div>
+      <div class="tier-content">
+        <div class="tags">
+          <div class="tag">特别激励奖</div>
+          <div class="tag">技术贡献奖</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier line-tier">
+      <div class="tier-label">
+        <span class="tier-name">线级</span>
+        <span class="tier-count">3项</span>
+      </div>
+      <div class="tier-content">
+        <div class="tags">
+          <div class="tag">AMS特别奖</div>
+          <div class="tag">AI创效奖</div>
+          <div class="tag">管理价值奖</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier dept-tier">
+      <div class="tier-label">
+        <span class="tier-name">侧/部门级</span>
+        <span class="tier-count">2项</span>
+      </div>
+      <div class="tier-content">
+        <div class="tags">
+          <div class="tag">进取奖</div>
+          <div class="tag">AI摘星奖</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">腾讯广告营销设计中心</div>
+
+</div>
+
+</body>
+</html>
